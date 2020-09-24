@@ -34,3 +34,12 @@ das entspricht dem Dta des Send Raw
 
 Protocol Data ist hier drin also P43 = Somfy RTS
 https://github.com/fhem/fhem-mirror/blob/master/fhem/FHEM/lib/SD_ProtocolData.pm
+Address 131815
+enc key A1
+rolling code 0101
+key up
+
+2020.09.24 15:39:30 5: sduino: Set_sendMsg, msg=P43#A2848587928A99#R6
+2020.09.24 15:39:30 5: sduino: Set_sendMsg, Preparing manchester protocol=43, repeats=0, clock=645 data=A2848587928A99
+2020.09.24 15:39:30 5: sduino: AddSendQueue, sduino: SC;R=6;SR;P0=-2560;P1=2560;P3=-640;D=10101010101010113;SM;C=645;D=A2848587928A99;F=10AB85550A; (1)
+2020.09.24 15:39:30 4: sduino: Set_sendMsg, sending : SC;R=6;SR;P0=-2
