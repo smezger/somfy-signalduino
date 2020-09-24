@@ -34,3 +34,7 @@ das entspricht dem Dta des Send Raw
 
 Protocol Data ist hier drin also P43 = Somfy RTS
 https://github.com/fhem/fhem-mirror/blob/master/fhem/FHEM/lib/SD_ProtocolData.pm
+Address 131815
+enc key A1
+rolling code 0101
+key up
