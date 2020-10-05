@@ -51,6 +51,8 @@ key up
 
 2020.09.24 15:39:30 4: sduino: Set_sendMsg, sending : SC;R=6;SR;P0=-2
 ## New example
+* RC: 108
+* EC: A8
 <pre>
 020.10.05 09:38:20 4: SOMFY_set: Light -> entering with mode :send: cmd :off:  arg1 ::  pos :200: 
 2020.10.05 09:38:20 4: SOMFY_set: handled command off --> move :off:  newState :open: 
