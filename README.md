@@ -50,3 +50,17 @@ key up
 2020.09.24 15:39:30 5: sduino: AddSendQueue, sduino: SC;R=6;SR;P0=-2560;P1=2560;P3=-640;D=10101010101010113;SM;C=645;D=A2848587928A99;F=10AB85550A; (1)
 
 2020.09.24 15:39:30 4: sduino: Set_sendMsg, sending : SC;R=6;SR;P0=-2
+## New example
+<pre>
+020.10.05 09:38:20 4: SOMFY_set: Light -> entering with mode :send: cmd :off:  arg1 ::  pos :200: 
+2020.10.05 09:38:20 4: SOMFY_set: handled command off --> move :off:  newState :open: 
+2020.10.05 09:38:20 5: SOMFY_set: handled for drive/udpate:  updateState ::  drivet :0: updatet :0: 
+2020.10.05 09:38:20 4: SOMFY_sendCommand: Light -> cmd :off: 
+2020.10.05 09:38:20 4: SOMFY_SENDsm message: sA8200108131815
+2020.10.05 09:38:20 4: SOMFY_SENDsm data before checksum: sA8200108131815
+2020.10.05 09:38:20 4: SOMFY_SENDsm data checksum: 6
+2020.10.05 09:38:20 4: SOMFY_SENDsm data after crypt: A88E8F87928A99
+2020.10.05 09:38:20 5: sduino: Write, sending via Set sendMsg P43#A88E8F87928A99#R6
+2020.10.05 09:38:20 5: sduino: Set_sendMsg, msg=P43#A88E8F87928A99#R6
+2020.10.05 09:38:20 5: sduino: Set_sendMsg, Preparing manchester protocol=43, repeats=0, clock=645 data=A88E8F87928A99
+</pre>
