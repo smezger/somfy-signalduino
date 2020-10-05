@@ -9,9 +9,9 @@ namespace smARTsoftware.SomfyRts
     {
       Console.WriteLine("Hello World!");
       var cmd = new SomfyRtsFrame();
-      cmd.Address = 131815;
-      cmd.EncryptionKey = 0xA2;
-      cmd.RollingCode = 0102;
+      cmd.Address = 0x131815;
+      cmd.EncryptionKey = 0xA8;
+      cmd.RollingCode = 0x0108;
       cmd.Command = SomfyRtsButton.Up;
       var data = cmd.GetFrame();
 
