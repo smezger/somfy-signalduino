@@ -13,6 +13,9 @@ namespace smARTsoftware.SomfyRtsLib
     {
       mSerialPort = new SerialPort(device, 57600, Parity.None, cDatabits, StopBits.One);
       mSerialPort.Open();
+      mSerialPort.ReadTimeout = 500;
+      Console.WriteLine($"Encoding is: {mSerialPort.Encoding}");
+      Console.WriteLine($"Device is open: {mSerialPort.IsOpen}");
     }
     public void Close()
     {
@@ -21,16 +24,30 @@ namespace smARTsoftware.SomfyRtsLib
     }
     public void SendCommand(string command)
     {
-      mSerialPort.WriteLine(command);
+      Console.WriteLine($"Send command: '{command}'");
+      mSerialPort.Write(command+"\r\n\0");
+
     }
     public string Read()
     {
-      if(mSerialPort.BytesToRead>0)
+      Console.WriteLine($"Bytes to read: {mSerialPort.BytesToRead}");
+      //Console.WriteLine(mSerialPort.ReadLine());
+      byte tmpByte;
+      string rxString = "";
+      tmpByte = (byte)mSerialPort.ReadByte();
+      while(tmpByte != 255)
+      {
+        rxString += ((char)tmpByte);
+        tmpByte = (byte)mSerialPort.ReadByte();
+      }
+      return rxString;
+      /*if(mSerialPort.BytesToRead>0)
       {
         byte[] buffer = new byte[mSerialPort.BytesToRead];
         var len = mSerialPort.Read(buffer, 0, buffer.Length);
+        Console.WriteLine($"Received text: {new ASCIIEncoding().GetString(buffer)}");
         return new ASCIIEncoding().GetString(buffer);
-      }
+      }*/
       return "";
     }
     public void SendSomfyFrame(SomfyRtsFrame frame, int repetition = 6)
