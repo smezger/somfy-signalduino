@@ -14,9 +14,23 @@ namespace smARTsoftware.SomfyRtsLib
       mSerialPort = new SerialPort(device, 57600, Parity.None, cDatabits, StopBits.One);
       mSerialPort.Open();
       mSerialPort.ReadTimeout = 500;
+      mSerialPort.DataReceived += SerialPort_DataReceived;
       Console.WriteLine($"Encoding is: {mSerialPort.Encoding}");
       Console.WriteLine($"Device is open: {mSerialPort.IsOpen}");
     }
+    public void RunTerminalMode()
+    {
+      do {
+        var key = Console.Read();
+        mSerialPort.Write(new byte[] { (byte)key }, 0, 1);
+          } while (true);
+    }
+
+    private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+    {
+      Console.WriteLine($"Data received through event: {(sender as SerialPort).ReadExisting()}");
+    }
+
     public void Close()
     {
       mSerialPort?.Close();
