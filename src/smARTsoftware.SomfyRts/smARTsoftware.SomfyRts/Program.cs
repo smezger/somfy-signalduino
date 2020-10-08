@@ -19,8 +19,9 @@ namespace smARTsoftware.SomfyRts
         sig.Open(dev);
         do
         {
+          //Console.WriteLine("new");
           string cmd = Console.ReadLine();
-          sig.SendCommand(cmd);
+          sig.SendCommand(cmd);//WriteWithBytes(cmd);//
           Thread.Sleep(100);
           Console.WriteLine(sig.Read());
         } while (true);

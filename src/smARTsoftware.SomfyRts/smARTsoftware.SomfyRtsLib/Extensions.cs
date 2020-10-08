@@ -15,5 +15,14 @@ namespace smARTsoftware.SomfyRtsLib
       }
       return sb.ToString();
     }
+    public static string ToHexDisplayString(this byte[] data)
+    {
+      StringBuilder sb = new StringBuilder();
+      foreach (var b in data)
+      {
+        sb.Append(b.ToString("X2")+" ");
+      }
+      return sb.ToString();
+    }
   }
 }
