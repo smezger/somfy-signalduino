@@ -38,11 +38,24 @@ namespace smARTsoftware.SomfyRtsLib
         if(dev.Name.Equals(device,StringComparison.OrdinalIgnoreCase))
         {
           var frame = dev.CreateFrame(command);
-          mSignalduino.Open(SignalDuinoAddress);
+          Console.WriteLine($"Send command: {command} to device {dev.Name}");
+          //mSignalduino.Open(SignalDuinoAddress);
           mSignalduino.SendSomfyFrame(frame);
           return;
         }
       }
+    }
+    public void Open()
+    {
+      Console.WriteLine("Open connection");
+      mSignalduino.Open(SignalDuinoAddress);
+
+    }
+    public void Close()
+    {
+
+      Console.WriteLine("Close connection");
+      mSignalduino.Close();
     }
 
     public void Save()

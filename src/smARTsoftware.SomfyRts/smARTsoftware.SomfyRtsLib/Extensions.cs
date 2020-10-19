@@ -11,7 +11,7 @@ namespace smARTsoftware.SomfyRtsLib
       StringBuilder sb = new StringBuilder();
       foreach (var b in data)
       {
-        sb.Append(b.ToString("X"));
+        sb.Append(b.ToString("X2"));
       }
       return sb.ToString();
     }

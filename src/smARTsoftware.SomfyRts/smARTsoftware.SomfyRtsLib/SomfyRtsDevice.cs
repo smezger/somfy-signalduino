@@ -8,9 +8,9 @@ namespace smARTsoftware.SomfyRtsLib
 {
   public class SomfyRtsDevice
   {
-    public UInt16 RollingCode { get; set; } = 0;
+    public UInt16 RollingCode { get; set; } = 1;
     public UInt32 Address { get; set; }
-    public byte EncryptionKey { get; set; } = 0xA0;
+    public byte EncryptionKey { get; set; } = 0xA1;
     public string Name { get; set; }
 
     public SomfyRtsFrame CreateFrame(SomfyRtsButton button)

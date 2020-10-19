@@ -10,41 +10,32 @@ namespace smARTsoftware.SomfyRts
 
     static void Main(string[] args)
     {
-      if (args.Length > 0)
-      {
-        Signalduino sig = new Signalduino();
-        string dev = "/dev/serial/by-id/usb-Unknown_radino_CC1101-if00";
-        if (args[0].StartsWith("/"))
-          dev = args[0];
-        sig.Open(dev);
-        do
-        {
-          //Console.WriteLine("new");
-          string cmd = Console.ReadLine();
-          sig.SendCommand(cmd);//WriteWithBytes(cmd);//
-          Thread.Sleep(100);
-          Console.WriteLine(sig.Read());
-        } while (true);
-        return;
-      }
-
+      string dev = "/dev/serial/by-id/usb-Unknown_radino_CC1101-if00";
+      if (args.Length >0 && args[0].StartsWith("/"))
+        dev = args[0];
       SomfyRtsController controller = SomfyRtsController.CreateFromFile();
-      controller.SignalDuinoAddress = "/dev/serial/by-id/usb-Unknown_radino_CC1101-if00";
-
-      if (controller.Devices.Count == 0)
+      controller.SignalDuinoAddress = dev;
+      do
       {
-        controller.AddDevice(cLight, 180004);
-        controller.SendCommand(cLight, SomfyRtsButton.Prog);
-        Console.WriteLine("Sending PROG to device light");
-        Console.ReadLine();
-        controller.Save();
-      }
-      controller.SendCommand(cLight, SomfyRtsButton.Up);
-      Console.WriteLine("Sending Up to device light");
-      Console.ReadLine();
-      controller.SendCommand(cLight, SomfyRtsButton.Down);
-      Console.WriteLine("Sending Up to device light");
-      Console.ReadLine();
+        var key = Console.ReadKey();
+        switch(key.Key)
+        {
+          case ConsoleKey.A:
+            controller.AddDevice(cLight, 180004);break;
+          case ConsoleKey.P: 
+            controller.SendCommand(cLight, SomfyRtsButton.Prog);break;
+          case ConsoleKey.U:
+            controller.SendCommand(cLight, SomfyRtsButton.Up);break;
+          case ConsoleKey.D:
+            controller.SendCommand(cLight, SomfyRtsButton.Down); break;
+          case ConsoleKey.F:
+            controller.SendCommand(cLight, SomfyRtsButton.My); break;
+          case ConsoleKey.C:
+            controller.Close(); break;
+          case ConsoleKey.O:
+            controller.Open(); break;
+        }
+      } while (true);
 
     }
   }
