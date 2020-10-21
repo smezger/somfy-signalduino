@@ -30,6 +30,15 @@ namespace smARTsoftware.SomfyRtsLib
       Console.WriteLine($"Device is open: {mSerialPort.IsOpen}");
       Console.WriteLine($"DTR:{mSerialPort.DtrEnable} Handshake: {mSerialPort.Handshake}");
     }
+    public bool IsOpen
+    {
+      get
+      {
+        if (null == mSerialPort)
+          return false;
+        return mSerialPort.IsOpen;        
+      }
+    }
     
     public void ReadBack()
     {

@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smARTsoftware.SomfyRts", "smARTsoftware.SomfyRts\smARTsoftware.SomfyRts.csproj", "{B41ACDEC-A336-4E33-ACE8-C3F3B1C934A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "smARTsoftware.SomfyRts", "smARTsoftware.SomfyRts\smARTsoftware.SomfyRts.csproj", "{B41ACDEC-A336-4E33-ACE8-C3F3B1C934A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smARTsoftware.SomfyRtsLib", "smARTsoftware.SomfyRtsLib\smARTsoftware.SomfyRtsLib.csproj", "{4DF169C0-351E-4C0C-A4F2-DFD03F3CB4C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "smARTsoftware.SomfyRtsLib", "smARTsoftware.SomfyRtsLib\smARTsoftware.SomfyRtsLib.csproj", "{4DF169C0-351E-4C0C-A4F2-DFD03F3CB4C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "smARTsoftware.SomfyRts.Server", "smARTsoftware.SomfyRts.Server\smARTsoftware.SomfyRts.Server.csproj", "{DB8BC341-6155-4F7B-9816-DED98522364E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4DF169C0-351E-4C0C-A4F2-DFD03F3CB4C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DF169C0-351E-4C0C-A4F2-DFD03F3CB4C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DF169C0-351E-4C0C-A4F2-DFD03F3CB4C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8BC341-6155-4F7B-9816-DED98522364E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8BC341-6155-4F7B-9816-DED98522364E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8BC341-6155-4F7B-9816-DED98522364E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8BC341-6155-4F7B-9816-DED98522364E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

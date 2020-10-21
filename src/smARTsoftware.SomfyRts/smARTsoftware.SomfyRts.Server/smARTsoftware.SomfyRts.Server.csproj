@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\smARTsoftware.SomfyRtsLib\smARTsoftware.SomfyRtsLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="settings\SomfyRtsController.artset">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy $(ProjectDir)settings\SomfyRtsController.artset $(OutDir)\SomfyRtsController.artset" />
+  </Target>
+
+</Project>

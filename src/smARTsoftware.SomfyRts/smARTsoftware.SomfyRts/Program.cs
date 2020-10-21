@@ -35,6 +35,7 @@ namespace smARTsoftware.SomfyRts
           case ConsoleKey.O:
             controller.Open(); break;
         }
+        controller.Save();    
       } while (true);
 
     }

@@ -33,6 +33,8 @@ namespace smARTsoftware.SomfyRtsLib
     }
     public void SendCommand(string device, SomfyRtsButton command)
     {
+      if (!mSignalduino.IsOpen)
+        mSignalduino.Open(SignalDuinoAddress);
       foreach (var dev in Devices)
       {
         if(dev.Name.Equals(device,StringComparison.OrdinalIgnoreCase))
@@ -44,6 +46,17 @@ namespace smARTsoftware.SomfyRtsLib
           return;
         }
       }
+    }
+    public bool DeviceAvailable(string device)
+    {
+      foreach (var dev in Devices)
+      {
+        if (dev.Name.Equals(device, StringComparison.OrdinalIgnoreCase))
+        {
+          return true;
+        }
+      }
+      return false;
     }
     public void Open()
     {
