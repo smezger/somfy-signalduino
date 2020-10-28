@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SomfyRtsController xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Devices>
+<SomfyRtsController xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Devices>    
     <SomfyRtsDevice>
-      <RollingCode>6</RollingCode>
-      <Address>180004</Address>
-      <EncryptionKey>166</EncryptionKey>
-      <Name>Light</Name>
-    </SomfyRtsDevice>
-	<SomfyRtsDevice>      
-      <Address>180001</Address>      
+      <RollingCode>1</RollingCode>
+      <Address>180000</Address>
+      <EncryptionKey>161</EncryptionKey>
       <Name>Lamellen</Name>
-	</SomfyRtsDevice>
-    <SomfyRtsDevice>      
-      <Address>180002</Address>      
+    </SomfyRtsDevice>
+    <SomfyRtsDevice>
+      <RollingCode>1</RollingCode>
+      <Address>180001</Address>
+      <EncryptionKey>161</EncryptionKey>
       <Name>ScreenSouth</Name>
     </SomfyRtsDevice>
-	<SomfyRtsDevice>      
-      <Address>180003</Address>      
+    <SomfyRtsDevice>
+      <RollingCode>1</RollingCode>
+      <Address>180002</Address>
+      <EncryptionKey>161</EncryptionKey>
       <Name>ScreenEast</Name>
+    </SomfyRtsDevice>
+	<SomfyRtsDevice>
+      <RollingCode>1</RollingCode>
+      <Address>18003</Address>
+      <EncryptionKey>161</EncryptionKey>
+      <Name>Light</Name>
+    </SomfyRtsDevice>
+	<SomfyRtsDevice>
+      <RollingCode>8</RollingCode>
+      <Address>180004</Address>
+      <EncryptionKey>168</EncryptionKey>
+      <Name>Dev</Name>
     </SomfyRtsDevice>	
   </Devices>
   <SignalDuinoAddress>/dev/serial/by-id/usb-Unknown_radino_CC1101-if00</SignalDuinoAddress>

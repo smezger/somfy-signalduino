@@ -31,7 +31,7 @@ namespace smARTsoftware.SomfyRtsLib
         return new SomfyRtsController();
       }
     }
-    public void SendCommand(string device, SomfyRtsButton command)
+    public void SendCommand(string device, SomfyRtsButton command, int repetition = 6)
     {
       if (!mSignalduino.IsOpen)
         mSignalduino.Open(SignalDuinoAddress);
@@ -42,7 +42,7 @@ namespace smARTsoftware.SomfyRtsLib
           var frame = dev.CreateFrame(command);
           Console.WriteLine($"Send command: {command} to device {dev.Name}");
           //mSignalduino.Open(SignalDuinoAddress);
-          mSignalduino.SendSomfyFrame(frame);
+          mSignalduino.SendSomfyFrame(frame, repetition);
           return;
         }
       }

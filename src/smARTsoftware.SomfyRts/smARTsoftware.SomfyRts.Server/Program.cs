@@ -1,6 +1,8 @@
 ﻿using smARTsoftware.SomfyRtsLib;
 using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,6 +31,24 @@ namespace smARTsoftware.SomfyRts
       sHttp.Close();
 
     }
+    private static Dictionary<string, SomfyRtsButton> sButtonMapping = new Dictionary<string, SomfyRtsButton>()
+    {
+      { "open", SomfyRtsButton.Up },
+      {"an", SomfyRtsButton.Up},
+      {"on", SomfyRtsButton.Up},
+      { "close", SomfyRtsButton.Down},
+      { "aus",SomfyRtsButton.Down},
+      { "off",SomfyRtsButton.Down},
+      { "stop",SomfyRtsButton.My},
+      { "favPos",SomfyRtsButton.My},
+      { "fav",SomfyRtsButton.My},
+      { "enable",SomfyRtsButton.EnableSensor},
+      { "disable", SomfyRtsButton.DisableSensor},
+      {"mydown" ,SomfyRtsButton.MyDown},
+      { "myup",SomfyRtsButton.MyUp},
+      {"prog" ,SomfyRtsButton.Prog},
+      {"updown" ,SomfyRtsButton.UpDown},
+    };
     public static async Task HandleRequests()
     {
       bool runServer = true;
@@ -71,6 +91,19 @@ namespace smARTsoftware.SomfyRts
               }
               result = sb.ToString();
             }
+            else if(token.Length > 0 && token[0] == "help")
+            {
+              StringBuilder sb = new StringBuilder();              
+              foreach (var cmd in sButtonMapping)
+              {
+                sb.AppendLine($"Cmd: '{cmd.Key}' => {cmd.Value}");
+              }
+              result = sb.ToString();
+            }
+            else if (token.Length > 0 && token[0] == "version")
+            {
+              result = $"{Assembly.GetExecutingAssembly().GetName().Name} {Assembly.GetExecutingAssembly().GetName().Version}";
+            }
             else if (token.Length > 0)
             {
               string dev = token[0];
@@ -81,48 +114,23 @@ namespace smARTsoftware.SomfyRts
                 {
                   var cmd = token[1];
                   SomfyRtsButton? button = null;
-                  switch (cmd)
-                  {
-                    case "open":
-                    case "an":
-                      button = SomfyRtsButton.Up;
-                      break;
-                    case "close":
-                    case "aus":
-                      button = SomfyRtsButton.Down;
-                      break;
-                    case "stop":                    
-                      button = SomfyRtsButton.My;
-                      break;
-                    case "favPos":
-                      button = SomfyRtsButton.My;
-                      break;
-                    case "enable":
-                      button = SomfyRtsButton.EnableSensor;
-                      break;
-                    case "disable":
-                      button = SomfyRtsButton.DisableSensor;
-                      break;
-                    case "mydown":
-                      button = SomfyRtsButton.MyDown;
-                      break;
-                    case "myup":
-                      button = SomfyRtsButton.MyUp;
-                      break;
-                    case "prog":
-                      button = SomfyRtsButton.Prog;
-                      break;
-                    case "updown":
-                      button = SomfyRtsButton.UpDown;
-                      break;
-                  }
+                  if (sButtonMapping.ContainsKey(cmd))
+                    button = sButtonMapping[cmd];
                   if(null != button)
                   {
-                    sController.SendCommand(dev, button.Value);
+                    if(token.Length >2 && Int32.TryParse(token[2], out int rep))
+                    {                      
+                      sController.SendCommand(dev, button.Value, rep);
+                    }
+                    else
+                    {
+                      sController.SendCommand(dev, button.Value);
+                    }                    
                     sController.Save();
+                    result = "OK";
                   }else
                   {
-                    result = $"Command '{cmd}' not found!";
+                    result = $"Command '{cmd}' not found! Call help to list available cmds.";
                   }
                 }
                 else
@@ -138,11 +146,10 @@ namespace smARTsoftware.SomfyRts
           }
         }
 
-
         // Write the response info
 
         byte[] data = Encoding.UTF8.GetBytes(result);
-        resp.ContentType = "text/json";
+        resp.ContentType = "text/plain";
         resp.ContentEncoding = Encoding.UTF8;
         resp.ContentLength64 = data.LongLength;
 
