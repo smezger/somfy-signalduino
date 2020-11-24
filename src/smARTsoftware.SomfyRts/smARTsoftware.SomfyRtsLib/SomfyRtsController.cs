@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace smARTsoftware.SomfyRtsLib
 {
   public class SomfyRtsController
   {
+    protected const int cKeepAliveTime = 60;//[s]
+    protected bool mRunKeepAlive = false;
     public List<SomfyRtsDevice> Devices { get; set; } = new List<SomfyRtsDevice>();
     public string SignalDuinoAddress { get; set; } = "";
     Signalduino mSignalduino = new Signalduino();
@@ -23,6 +27,7 @@ namespace smARTsoftware.SomfyRtsLib
         using (StreamReader r = new StreamReader(path))
         {
           var s = (SomfyRtsController)serializer.Deserialize(r);
+          s.RunKeepAlive();
           return s;
         }
       }
@@ -46,6 +51,25 @@ namespace smARTsoftware.SomfyRtsLib
           return;
         }
       }
+    }
+    public void RunKeepAlive()
+    {
+      mRunKeepAlive = true;
+      Task.Run(RunKeepAliveInternal);
+    }
+    public void StopKeepAlive()
+    {
+      mRunKeepAlive = false;
+    }
+    private void RunKeepAliveInternal()
+    {
+      do
+      {
+        Thread.Sleep(cKeepAliveTime * 1000);
+        if (!mSignalduino.IsOpen)
+          mSignalduino.Open(SignalDuinoAddress);
+        mSignalduino.SendCommand("P");
+      } while (mRunKeepAlive);
     }
     public bool DeviceAvailable(string device)
     {
