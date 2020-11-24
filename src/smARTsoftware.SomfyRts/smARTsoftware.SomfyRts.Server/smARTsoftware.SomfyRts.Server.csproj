@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net461</TargetFramework>
-    <Version>1.1</Version>
+    <Version>1.2</Version>
     <Authors>Sebastian Mezger</Authors>
     <Company>smART Software</Company>
   </PropertyGroup>

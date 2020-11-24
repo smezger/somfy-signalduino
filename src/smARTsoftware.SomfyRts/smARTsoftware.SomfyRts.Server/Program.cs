@@ -48,6 +48,7 @@ namespace smARTsoftware.SomfyRts
       { "myup",SomfyRtsButton.MyUp},
       {"prog" ,SomfyRtsButton.Prog},
       {"updown" ,SomfyRtsButton.UpDown},
+      {"dimm" ,SomfyRtsButton.Down},
     };
     public static async Task HandleRequests()
     {
@@ -115,7 +116,14 @@ namespace smARTsoftware.SomfyRts
                   var cmd = token[1];
                   SomfyRtsButton? button = null;
                   if (sButtonMapping.ContainsKey(cmd))
+                  {
                     button = sButtonMapping[cmd];
+                    if(cmd == "dimm")
+                    {
+                      token = new string[]{token[0],token[1],"20" };
+                    }
+                  }
+                    
                   if(null != button)
                   {
                     if(token.Length >2 && Int32.TryParse(token[2], out int rep))
