@@ -23,9 +23,9 @@ namespace smARTsoftware.SomfyRtsLib
       mSerialPort.DtrEnable = true;
       mSerialPort.ReadTimeout = 5000;
       mSerialPort.WriteTimeout = 500;
-      //Thread readThread = new Thread(ReadBack);
-      //readThread.Start();
-      mSerialPort.DataReceived += SerialPort_DataReceived;
+      Thread readThread = new Thread(ReadBack);
+      readThread.Start();
+      //mSerialPort.DataReceived += SerialPort_DataReceived;
       Console.WriteLine($"Encoding is: {mSerialPort.Encoding}");
       Console.WriteLine($"Device is open: {mSerialPort.IsOpen}");
       Console.WriteLine($"DTR:{mSerialPort.DtrEnable} Handshake: {mSerialPort.Handshake}");
