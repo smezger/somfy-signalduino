@@ -42,8 +42,8 @@ namespace smARTsoftware.SomfyRts
       { "stop",SomfyRtsButton.My},
       { "favPos",SomfyRtsButton.My},
       { "fav",SomfyRtsButton.My},
-      { "enable",SomfyRtsButton.DisableSensor},//not a bug in this code: it is implemented like this on Brustor devices
-      { "disable", SomfyRtsButton.EnableSensor},//not a bug in this code: it is implemented like this on Brustor devices
+      { "enable",SomfyRtsButton.EnableSensor},
+      { "disable", SomfyRtsButton.DisableSensor},
       {"mydown" ,SomfyRtsButton.MyDown},
       { "myup",SomfyRtsButton.MyUp},
       {"prog" ,SomfyRtsButton.Prog},
