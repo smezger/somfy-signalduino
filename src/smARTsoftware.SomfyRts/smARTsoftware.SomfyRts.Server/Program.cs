@@ -162,6 +162,8 @@ namespace smARTsoftware.SomfyRts
         resp.ContentLength64 = data.LongLength;
 
         // Write out to the response stream (asynchronously), then close it
+        resp.Headers.Add("Access-Control-Allow-Origin", "*");
+        resp.Headers.Add("Access-Control-Allow-Methods", "POST, GET");
         await resp.OutputStream.WriteAsync(data, 0, data.Length);
         resp.Close();
       }
