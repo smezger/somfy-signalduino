@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "smARTsoftware.SomfyRts": {
-      "commandName": "Project",
-      "commandLineArgs": "COM4"
-    }
-  }
-}
