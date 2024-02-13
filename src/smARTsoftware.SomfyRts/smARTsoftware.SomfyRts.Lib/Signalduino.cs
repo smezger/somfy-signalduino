@@ -9,7 +9,7 @@ namespace smARTsoftware.SomfyRtsLib
   public class Signalduino
   {
     const int cDatabits = 8;
-    SerialPort mSerialPort = null;
+    SerialPort? mSerialPort = null;
     public void Open(string device)
     {
 

@@ -99,10 +99,10 @@ namespace smARTsoftware.SomfyRtsLib
     {
       XmlSerializer serializer = new XmlSerializer(typeof(SomfyRtsController));
       string path = Path.Combine(FileUtils.SettingsDir, $"{nameof(SomfyRtsController)}.artset");
-      string dir = Path.GetDirectoryName(path);
+      string? dir = Path.GetDirectoryName(path);
       if (!Directory.Exists(dir))
       {
-        Directory.CreateDirectory(dir);
+        _ = Directory.CreateDirectory(dir);
       }
       using (StreamWriter w = new StreamWriter(path))
       {
